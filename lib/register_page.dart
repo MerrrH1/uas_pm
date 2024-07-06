@@ -28,7 +28,7 @@ class RegisterPage extends StatelessWidget {
                           fontSize: 22,
                           fontWeight: FontWeight.bold
                       ),),
-                    Text('DineDash',
+                    Text('Kafe Sigma',
                       style: TextStyle(
                           color: Colors.redAccent,
                           fontSize: 22,
