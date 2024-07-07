@@ -10,7 +10,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  bool isLoading = false;
   bool _obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,26 +83,48 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: 50,),
+                const SizedBox(height: 50,),
+
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    minimumSize: Size(80, 50),
+                      minimumSize: const Size(80, 50),
                   ),
                   onPressed: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomePage(),
-                      ),
-                          (Route<dynamic>route) => false,
-                    );
+                    setState(() {
+                      isLoading = true;
+                    });
+
+                    String username = usernameController.text;
+                    String password = passwordController.text;
+
+                    if (username == 'admin' && password == 'admin') {
+                      final snackBar = SnackBar(
+                          backgroundColor: Colors.green,
+                          content: Text('Berhasil Login')
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomePage()
+                          )
+                      );
+                    }
+                    else {
+                      final snackBar = SnackBar(
+                          backgroundColor: Colors.red,
+                          content: Text('Username / password salah')
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }
                   },
                   child: Text('Masuk',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16
-                    ),),
+                    )),
                 ),
+
                 SizedBox(height: 35,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -111,9 +138,10 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: () {
                           Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => LoginPage())
+                              MaterialPageRoute(builder: (context) => RegisterPage())
                           );
                         },
+
                         child: Text('Daftar disini',
                           style: TextStyle(
                             fontSize: 15,
