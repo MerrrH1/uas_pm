@@ -21,6 +21,10 @@ class HomePage extends StatelessWidget {
           buildMenuItem(context, 'Mie Ayam', 'Rp 12.000', 'images/mie_ayam.jpeg'),
           SizedBox(height: 10),
           buildMenuItem(context, 'Soto Ayam', 'Rp 15.000', 'images/soto_ayam.jpeg'),
+          SizedBox(height: 10,),
+          buildMenuItem(context, 'Sate Ayam', 'Rp 13.000', 'images/sate_ayam.jpeg'),
+          SizedBox(height: 10),
+          buildMenuItem(context, 'Mie Rebus', 'Rp 14.000', 'images/mie_rebus.jpeg'),
         ],
       ),
     );

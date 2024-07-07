@@ -66,6 +66,8 @@ flutter:
     - images/nasi_goreng.jpeg
     - images/mie_ayam.jpeg
     - images/soto_ayam.jpeg
+    - images/sate_ayam.jpeg
+    - images/mie_rebus.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
