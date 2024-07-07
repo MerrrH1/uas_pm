@@ -10,11 +10,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool _obscureText = true;
+  bool isLoading = false;
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
-  bool isLoading = false;
-  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: [
                       TextField(
+                        controller: usernameController,
                         decoration: InputDecoration(
                           label: Text('Username'),
                           icon: Icon(Icons.person,
@@ -62,6 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       SizedBox(height: 15,),
                       TextField(
+                        controller: passwordController,
                         obscureText: _obscureText,
                         decoration: InputDecoration(
                           label: Text('Password'),
@@ -83,11 +84,10 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 50,),
-
+                SizedBox(height: 50,),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(80, 50),
+                    minimumSize: Size(80, 50),
                   ),
                   onPressed: () {
                     setState(() {
@@ -113,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                     else {
                       final snackBar = SnackBar(
                           backgroundColor: Colors.red,
-                          content: Text('Username / password salah')
+                          content: Text('Username dan password salah')
                       );
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     }
@@ -122,9 +122,8 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16
-                    )),
+                    ),),
                 ),
-
                 SizedBox(height: 35,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -141,7 +140,6 @@ class _LoginPageState extends State<LoginPage> {
                               MaterialPageRoute(builder: (context) => RegisterPage())
                           );
                         },
-
                         child: Text('Daftar disini',
                           style: TextStyle(
                             fontSize: 15,
