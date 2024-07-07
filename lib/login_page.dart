@@ -11,6 +11,10 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _obscureText = true;
+  bool isLoading = false;
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: [
                       TextField(
+                        controller: usernameController,
                         decoration: InputDecoration(
                           label: Text('Username'),
                           icon: Icon(Icons.person,
@@ -57,6 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       SizedBox(height: 15,),
                       TextField(
+                        controller: passwordController,
                         obscureText: _obscureText,
                         decoration: InputDecoration(
                           label: Text('Password'),
@@ -84,13 +90,33 @@ class _LoginPageState extends State<LoginPage> {
                     minimumSize: Size(80, 50),
                   ),
                   onPressed: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomePage(),
-                      ),
-                          (Route<dynamic>route) => false,
-                    );
+                    setState(() {
+                      isLoading = true;
+                    });
+
+                    String username = usernameController.text;
+                    String password = passwordController.text;
+
+                    if (username == 'admin' && password == 'admin') {
+                      final snackBar = SnackBar(
+                          backgroundColor: Colors.green,
+                          content: Text('Berhasil Login')
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomePage()
+                          )
+                      );
+                    }
+                    else {
+                      final snackBar = SnackBar(
+                          backgroundColor: Colors.red,
+                          content: Text('Username dan password salah')
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }
                   },
                   child: Text('Masuk',
                     style: TextStyle(
@@ -111,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: () {
                           Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => LoginPage())
+                              MaterialPageRoute(builder: (context) => RegisterPage())
                           );
                         },
                         child: Text('Daftar disini',
