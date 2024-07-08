@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'detail_food_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,16 +55,9 @@ class HomePage extends StatelessWidget {
   }
 
   Widget buildMenuItem(BuildContext context, String title, String price, String imagePath) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => DetailFoodPage()),
-        );
-      },
-      child: Container(
+    return Container(
         width: double.infinity,
-        height: 120,
+        height: 130,
         padding: EdgeInsets.all(10),
         margin: EdgeInsets.only(bottom: 10), // Margin di antara setiap menu
         decoration: BoxDecoration(
@@ -112,9 +109,19 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
+            Spacer(),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                    onPressed: (){
+
+                    },
+                    child: Text('Order'))
+              ],
+            )
           ],
         ),
-      ),
-    );
+      );
   }
 }
