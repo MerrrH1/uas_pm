@@ -16,6 +16,24 @@ class HomePage extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.all(10),
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              CircleAvatar(
+                radius: 20,
+                  backgroundColor: Colors.green,
+                child: Text(
+                  'A',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              SizedBox(width: 40,)
+            ],
+          ),
+          SizedBox(height: 20,),
           buildMenuItem(context, 'Nasi Goreng', 'Rp 10.000', 'images/nasi_goreng.jpeg'),
           SizedBox(height: 10),
           buildMenuItem(context, 'Mie Ayam', 'Rp 12.000', 'images/mie_ayam.jpeg'),
@@ -25,6 +43,8 @@ class HomePage extends StatelessWidget {
           buildMenuItem(context, 'Sate Ayam', 'Rp 13.000', 'images/sate_ayam.jpeg'),
           SizedBox(height: 10),
           buildMenuItem(context, 'Mie Rebus', 'Rp 14.000', 'images/mie_rebus.jpeg'),
+          SizedBox(height: 10,),
+          buildMenuItem(context, 'Bakso', 'Rp. 15.000', 'images/bakso.jpeg')
         ],
       ),
     );
