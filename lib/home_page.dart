@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uas_pm/detail_food_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,110 +19,88 @@ class _HomePageState extends State<HomePage> {
         automaticallyImplyLeading: false, // Menghilangkan tombol navigasi kembali
       ),
       body: ListView(
-        padding: EdgeInsets.all(10),
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              CircleAvatar(
-                radius: 20,
-                  backgroundColor: Colors.green,
-                child: Text(
-                  'A',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                  ),
-                ),
+      padding: EdgeInsets.all(10),
+      children: [
+        Container(
+          width: double.infinity,
+          height: 130,
+          padding: EdgeInsets.all(10),
+          margin: EdgeInsets.only(left:10, right: 10, bottom: 10), // Margin di antara setiap menu
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 3,
+                blurRadius: 5,
+                offset: Offset(0, 2),
               ),
-              SizedBox(width: 40,)
             ],
           ),
-          SizedBox(height: 20,),
-          buildMenuItem(context, 'Nasi Goreng', 'Rp 10.000', 'images/nasi_goreng.jpeg'),
-          SizedBox(height: 10),
-          buildMenuItem(context, 'Mie Ayam', 'Rp 12.000', 'images/mie_ayam.jpeg'),
-          SizedBox(height: 10),
-          buildMenuItem(context, 'Soto Ayam', 'Rp 15.000', 'images/soto_ayam.jpeg'),
-          SizedBox(height: 10,),
-          buildMenuItem(context, 'Sate Ayam', 'Rp 13.000', 'images/sate_ayam.jpeg'),
-          SizedBox(height: 10),
-          buildMenuItem(context, 'Mie Rebus', 'Rp 14.000', 'images/mie_rebus.jpeg'),
-          SizedBox(height: 10,),
-          buildMenuItem(context, 'Bakso', 'Rp. 15.000', 'images/bakso.jpeg')
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => DetailFoodPage()
+                )
+              );
+            },
+            child: Row(
+              children: [
+                Container(
+                  height: 100,
+                  width: 100,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(25),
+                    child: Image.asset(
+                      'images/bakso.jpeg',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                SizedBox(width: 20),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Bakso',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      'Rp. 12.000',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(Icons.favorite, color: Colors.red,),
+                        Text('4.4'),
+                        SizedBox(width: 10),
+                        Icon(Icons.location_pin, color: Colors.yellow),
+                        Text('2.9km')
+                      ],
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
         ],
       ),
     );
-  }
-
-  Widget buildMenuItem(BuildContext context, String title, String price, String imagePath) {
-    return Container(
-        width: double.infinity,
-        height: 130,
-        padding: EdgeInsets.all(10),
-        margin: EdgeInsets.only(bottom: 10), // Margin di antara setiap menu
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: Offset(0, 3),
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            Container(
-              height: 100,
-              width: 100,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(25),
-                child: Image.asset(
-                  imagePath,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            SizedBox(width: 20),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(height: 5),
-                Text(
-                  price,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-            Spacer(),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                    onPressed: (){
-
-                    },
-                    child: Text('Order'))
-              ],
-            )
-          ],
-        ),
-      );
   }
 }

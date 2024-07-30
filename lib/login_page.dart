@@ -11,7 +11,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _obscureText = true;
-  bool isLoading = false;
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -90,10 +89,6 @@ class _LoginPageState extends State<LoginPage> {
                     minimumSize: Size(80, 50),
                   ),
                   onPressed: () {
-                    setState(() {
-                      isLoading = true;
-                    });
-
                     String username = usernameController.text;
                     String password = passwordController.text;
 
